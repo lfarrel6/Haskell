@@ -29,12 +29,12 @@ version :: Version
 version = Version [0,1,0,0] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
-bindir     = "/users/ugrad/lfarrel6/Desktop/haskell/my-shapes/.stack-work/install/x86_64-linux/lts-9.11/8.0.2/bin"
-libdir     = "/users/ugrad/lfarrel6/Desktop/haskell/my-shapes/.stack-work/install/x86_64-linux/lts-9.11/8.0.2/lib/x86_64-linux-ghc-8.0.2/my-shapes-0.1.0.0-1u8ZCrX5ylSDv8e59Ost1k"
-dynlibdir  = "/users/ugrad/lfarrel6/Desktop/haskell/my-shapes/.stack-work/install/x86_64-linux/lts-9.11/8.0.2/lib/x86_64-linux-ghc-8.0.2"
-datadir    = "/users/ugrad/lfarrel6/Desktop/haskell/my-shapes/.stack-work/install/x86_64-linux/lts-9.11/8.0.2/share/x86_64-linux-ghc-8.0.2/my-shapes-0.1.0.0"
-libexecdir = "/users/ugrad/lfarrel6/Desktop/haskell/my-shapes/.stack-work/install/x86_64-linux/lts-9.11/8.0.2/libexec"
-sysconfdir = "/users/ugrad/lfarrel6/Desktop/haskell/my-shapes/.stack-work/install/x86_64-linux/lts-9.11/8.0.2/etc"
+bindir     = "/users/ugrad/lfarrel6/Desktop/haskell/topics/my-shapes/.stack-work/install/x86_64-linux/lts-9.11/8.0.2/bin"
+libdir     = "/users/ugrad/lfarrel6/Desktop/haskell/topics/my-shapes/.stack-work/install/x86_64-linux/lts-9.11/8.0.2/lib/x86_64-linux-ghc-8.0.2/my-shapes-0.1.0.0-1u8ZCrX5ylSDv8e59Ost1k"
+dynlibdir  = "/users/ugrad/lfarrel6/Desktop/haskell/topics/my-shapes/.stack-work/install/x86_64-linux/lts-9.11/8.0.2/lib/x86_64-linux-ghc-8.0.2"
+datadir    = "/users/ugrad/lfarrel6/Desktop/haskell/topics/my-shapes/.stack-work/install/x86_64-linux/lts-9.11/8.0.2/share/x86_64-linux-ghc-8.0.2/my-shapes-0.1.0.0"
+libexecdir = "/users/ugrad/lfarrel6/Desktop/haskell/topics/my-shapes/.stack-work/install/x86_64-linux/lts-9.11/8.0.2/libexec"
+sysconfdir = "/users/ugrad/lfarrel6/Desktop/haskell/topics/my-shapes/.stack-work/install/x86_64-linux/lts-9.11/8.0.2/etc"
 
 getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: IO FilePath
 getBinDir = catchIO (getEnv "my_shapes_bindir") (\_ -> return bindir)

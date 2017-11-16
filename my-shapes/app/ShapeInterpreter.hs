@@ -1,3 +1,5 @@
+module ShapeInterpreter( svgDoc )
+
 import Text.Blaze.Svg11 ((!))
 import qualified Text.Blaze.Svg11 as S
 import qualified Text.Blaze.Svg11.Attributes as A

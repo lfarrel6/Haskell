@@ -12,3 +12,4 @@ executable          scotty-test
                   , blaze-html
                   , text
                   , scotty
+                  , blaze-svg
