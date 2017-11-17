@@ -8,6 +8,7 @@ executable          scotty-test
     main-is:        Main.hs
     ghc-options:    -Wall -threaded -O2 -rtsopts -with-rtsopts=-N
     extensions:     OverloadedStrings
+    other-modules:  Shapes
     build-depends:  base   >= 4      && < 5
                   , blaze-html
                   , text
