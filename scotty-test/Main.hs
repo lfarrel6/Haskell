@@ -38,11 +38,3 @@ longresponse n = do
       H.h1 "Welcome!"
       H.p ("" >> H.toHtml n)
       SH.testDrawings
-
---svgDoc :: S.Svg
---svgDoc = S.docTypeSvg ! AS.version "1.1" ! AS.width "150" ! AS.height "100" ! AS.viewbox "0 0 3 2" $ rectangle
- --where
-  --rectangle = do 
-      --S.rect ! AS.width "90" ! AS.height "50" ! AS.fill "#d2232c"
-      --S.rect ! AS.width "60" ! AS.height "50" ! AS.fill "#ffffff"
-      --S.rect ! AS.width "30" ! AS.height "50" ! AS.fill "#008d46"

@@ -1,7 +1,7 @@
 module Shapes(
   Shape, Transform, Drawing, VisTransform,
   circle, square,
-  translate, rotate, scale, myTestRender, testDrawings, (<+>),
+  translate, rotate, scale, myTestRender, testDrawings,
   white, red, green, blue, black,
   transform, visTransform)  where
 
@@ -33,7 +33,7 @@ black = "#000000"
 data Transform = Translate Double Double
            | Scale Double Double
            | Rotate Double
-           | Compose Transform Transform
+          -- | Compose Transform Transform
              deriving Show
 
 --identity = Identity
@@ -43,7 +43,7 @@ scale :: Double -> Double -> Transform
 scale     = Scale
 rotate :: Double -> Transform
 rotate    = Rotate 
-t0 <+> t1 = Compose t0 t1
+--t0 <+> t1 = Compose t0 t1
 
 transform :: Transform -> S.Attribute
 transform t = AS.transform (transform' t)
@@ -53,25 +53,25 @@ transform' :: Transform -> S.AttributeValue
 transform' (Translate tx ty)  = S.translate tx ty
 transform' (Scale tx ty)      = S.scale tx ty
 transform' (Rotate theta)     = S.rotate theta
-transform' (Compose t0 t1)    = transform' t0 ++ transform' t1
+--transform' (Compose t0 t1)    = transform' t0 ++ transform' t1
 
 data VisTransform = Fill Color
                     | StrokeWidth Double
                     | Stroke Color
-                    | ComposeVis VisTransform VisTransform 
+                   -- | ComposeVis VisTransform VisTransform 
 
 fill, stroke :: Color -> VisTransform
 fill        = Fill
 stroke      = Stroke
 strokeWidth :: Double -> VisTransform
 strokeWidth = StrokeWidth
-t0 <!> t1   = ComposeVis t0 t1
+--t0 <!> t1   = ComposeVis t0 t1
 
 visTransform :: VisTransform -> S.Attribute
 visTransform (Fill c)           = AS.fill $ S.stringValue c
 visTransform (StrokeWidth d)    = AS.strokeWidth $ S.stringValue $ show d
 visTransform (Stroke c)         = AS.stroke $ S.stringValue c
-visTransform (ComposeVis t0 t1) = visTransform t0 ++ visTransform t1
+--visTransform (ComposeVis t0 t1) = visTransform t0 ++ visTransform t1
 
 type Renderable = (Transform,VisTransform,Shape)
 type Drawing = [Renderable]
@@ -85,7 +85,7 @@ myTestRender (x:xs)    = S.docTypeSvg ! AS.version "1.1" ! AS.width "150" ! AS.h
 testDrawings :: S.Svg
 testDrawings = myTestRender samples
   where
-   samples = [(((rotate 45)<+>(scale 10 10)),(fill red),square),((translate 40 10),((fill blue)<!>(stroke red)),circle),((translate (-10) (-10)),(strokeWidth 5),rect)]
+   samples = [((scale 10 10),(fill red),square),((translate 40 10),(stroke red),circle),((translate (-10) (-10)),(strokeWidth 5),rect)]
 
 renderShape :: Renderable -> S.Svg
 renderShape (t,ct,Circle) = circleSVG 50       ! transform t ! visTransform ct
