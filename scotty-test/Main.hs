@@ -14,7 +14,7 @@ import Data.Text.Lazy
 
 main = scotty 1234 $ do
   get "/" $ do
-    html (R.renderHtml $ SH.myTestRender)
+    html (R.renderHtml $ SH.testDrawings)
 
   get "/greet" $ do
       html $ "Yo"
@@ -37,7 +37,7 @@ longresponse n = do
     H.body $ do
       H.h1 "Welcome!"
       H.p ("" >> H.toHtml n)
-      SH.myTestRender
+      SH.testDrawings
 
 --svgDoc :: S.Svg
 --svgDoc = S.docTypeSvg ! AS.version "1.1" ! AS.width "150" ! AS.height "100" ! AS.viewbox "0 0 3 2" $ rectangle
