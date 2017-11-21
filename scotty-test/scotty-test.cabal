@@ -9,6 +9,7 @@ executable          scotty-test
     ghc-options:    -Wall -threaded -O2 -rtsopts -with-rtsopts=-N
     extensions:     OverloadedStrings
     other-modules:  Shapes
+                  , Colors
     build-depends:  base   >= 4      && < 5
                   , blaze-html
                   , text
