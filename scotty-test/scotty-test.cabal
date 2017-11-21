@@ -10,6 +10,8 @@ executable          scotty-test
     extensions:     OverloadedStrings
     other-modules:  Shapes
                   , Colors
+                  , Transformations
+                  , SvgHandler
     build-depends:  base   >= 4      && < 5
                   , blaze-html
                   , text
