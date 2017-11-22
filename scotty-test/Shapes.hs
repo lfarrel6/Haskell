@@ -12,7 +12,5 @@ circle = Circle
 square = Square
 rect   = Rect
 
--- | Compose Transform Transform
-
 type Renderable = (TR.Transform,TR.VisTransform,Shape)
 type Drawing    = [Renderable]
