@@ -1,4 +1,4 @@
-# Shape Server in Haskell
+# Shape Server in Haskell :octocat:
 
 ### SVG rendering server for CS4012
 
@@ -16,7 +16,7 @@ Each **Renderable** is a tuple of three items
 
 Transform | Usage | Supported
 ---------|--------|-----------
-Identity | `Identity` | N
+Identity | `Identity` | Y
 Translate | `Translate 5 5` | Y
 Scale | `Scale 5 5` | Y
 Rotate | `Rotate 30` | Y
@@ -30,7 +30,7 @@ Fill | `Fill Red` | Y
 StrokeWidth | `StrokeWidth 7.5` | Y
 Stroke | `Stroke Blue` | Y
 Opacity | `Opacity 0.5` | Y
-ComposeVis | `ComposeVis (Fill Red) (Opacity 0.25)` | N
+ComposeVis | `ComposeVis (Fill Red) (Opacity 0.25)` | Y
 
 ### Supported Shapes
 

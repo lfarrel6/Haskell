@@ -1,8 +1,10 @@
 module Transformations(Transform, VisTransform, transform, visTransform) where
 
 import qualified Text.Blaze.Svg11 as S
-import Colors
 import qualified Text.Blaze.Svg11.Attributes as AS
+
+import Colors
+import VisualHandler
 
 -- <<
 -- 'PHYSICAL' TRANSFORMATIONS
@@ -56,11 +58,16 @@ strokeWidth :: Double -> VisTransform
 strokeWidth = StrokeWidth
 fillOpacity :: Double -> VisTransform
 fillOpacity = Opacity
---t0 <!> t1   = ComposeVis t0 t1
+t0 <!> t1   = ComposeVis t0 t1
 
-visTransform :: VisTransform -> S.Attribute
-visTransform (Fill c)           = AS.fill        $ S.stringValue $ show c
-visTransform (StrokeWidth d)    = AS.strokeWidth $ S.stringValue $ show d
-visTransform (Stroke c)         = AS.stroke      $ S.stringValue $ show c
-visTransform (Opacity a)        = AS.fillOpacity $ S.stringValue $ show a
---visTransform (ComposeVis t0 t1) = visTransform t0 ++ visTransform t1
+visTransform :: VisTransform -> VisualHandler -> VisualHandler
+visTransform (Fill c)           visHandler = setFill        visHandler c --AS.fill        $ S.stringValue $ show c
+visTransform (StrokeWidth d)    visHandler = setStrokeWidth visHandler d --AS.strokeWidth $ S.stringValue $ show d
+visTransform (Stroke c)         visHandler = setStroke      visHandler c --AS.stroke      $ S.stringValue $ show c
+visTransform (Opacity a)        visHandler = setOpacity     visHandler a --AS.fillOpacity $ S.stringValue $ show a
+visTransform (ComposeVis t0 t1) visHandler = visTransform t1 newVh
+ where
+  newVh = visTransform t0 visHandler
+
+
+

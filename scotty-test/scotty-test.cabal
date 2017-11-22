@@ -12,6 +12,7 @@ executable          scotty-test
                   , Colors
                   , Transformations
                   , SvgHandler
+                  , VisualHandler
     build-depends:  base   >= 4      && < 5
                   , blaze-html
                   , text
