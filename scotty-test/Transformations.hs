@@ -3,7 +3,6 @@ module Transformations(Transform, VisTransform, transform, visTransform) where
 import qualified Text.Blaze.Svg11 as S
 import Colors
 import qualified Text.Blaze.Svg11.Attributes as AS
-import Text.Blaze.Svg11 ((!))
 
 -- <<
 -- 'PHYSICAL' TRANSFORMATIONS

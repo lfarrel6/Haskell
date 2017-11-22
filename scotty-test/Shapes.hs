@@ -1,6 +1,6 @@
 module Shapes where
 
-import Transformations(Transform, VisTransform)
+import qualified Transformations as TR
 
 data Shape = Circle
            | Square
@@ -14,5 +14,5 @@ rect   = Rect
 
 -- | Compose Transform Transform
 
-type Renderable = (Transform,VisTransform,Shape)
+type Renderable = (TR.Transform,TR.VisTransform,Shape)
 type Drawing    = [Renderable]

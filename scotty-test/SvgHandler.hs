@@ -7,8 +7,11 @@ import qualified Text.Blaze.Svg11 as S
 import qualified Text.Blaze.Svg11.Attributes as AS
 import Text.Blaze.Svg11 ((!))
 
-svgBuilder :: Renderable -> S.Svg
-svgBuilder toRender = S.docTypeSvg ! AS.version "1.1" ! AS.width "150" ! AS.height "150" ! AS.viewbox "-25 -25 100 100" $ do renderShape toRender
+svgBuilder :: Drawing -> S.Svg
+svgBuilder currentDrawing = S.docTypeSvg ! AS.version "1.1" ! AS.width "150" ! AS.height "150" ! AS.viewbox "-25 -25 100 100" $ do mapM_ (\toDraw -> svgBuilder' toDraw) currentDrawing
+
+svgBuilder' :: Renderable -> S.Svg
+svgBuilder' = renderShape
 
 renderShape :: Renderable -> S.Svg
 renderShape (t, ct, Circle) = circleSVG    ! transform t ! visTransform ct
