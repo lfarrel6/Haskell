@@ -1,4 +1,4 @@
-module Colors(Color, white, red, green, blue, black, gold) where
+module Colors(Color, white, red, green, blue, black, gold, aqua, firebrick) where
 
 data Color = White
            | Red

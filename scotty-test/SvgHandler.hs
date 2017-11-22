@@ -12,27 +12,20 @@ svgBuilder :: Drawing -> S.Svg
 svgBuilder currentDrawing = S.docTypeSvg ! AS.version "1.1" ! AS.width "1500" ! AS.height "1500" ! AS.viewbox "-25 -25 100 100" $ do mapM_ (\toDraw -> renderShape toDraw getDefaultVH) currentDrawing
 
 renderShape :: Renderable -> VisualHandler -> S.Svg
-renderShape (t, ct, Circle)  vh = circleSVG    ! transform t ! renderFill visuals ! renderStroke visuals ! renderSWidth visuals ! renderOpacity visuals
- where
-  visuals = visTransform ct vh
-renderShape (t, ct, Square)  vh = squareSVG    ! transform t ! renderFill visuals ! renderStroke visuals ! renderSWidth visuals ! renderOpacity visuals
- where
-  visuals = visTransform ct vh
-renderShape (t, ct, Rect)    vh = rectangleSVG ! transform t ! renderFill visuals ! renderStroke visuals ! renderSWidth visuals ! renderOpacity visuals
- where
-  visuals = visTransform ct vh
-renderShape (t, ct, Ellipse) vh = ellipseSVG   ! transform t ! renderFill visuals ! renderStroke visuals ! renderSWidth visuals ! renderOpacity visuals
+renderShape (t, ct, sh)  vh = getSvg sh ! transform t ! renderFill visuals ! renderStroke visuals ! renderSWidth visuals ! renderOpacity visuals
  where
   visuals = visTransform ct vh
 
 defaultDim :: String
-defaultDim = "1"
+defaultDim = "10"
 
-circleSVG, rectangleSVG, squareSVG :: S.Svg
-circleSVG    = S.circle  ! AS.r     (S.stringValue defaultDim)
-rectangleSVG = S.rect    ! AS.width (S.stringValue defaultDim) ! AS.height (S.stringValue defaultDim)
-squareSVG    = S.rect    ! AS.width (S.stringValue defaultDim) ! AS.height (S.stringValue defaultDim)
-ellipseSVG   = S.ellipse ! AS.rx    (S.stringValue defaultDim) ! AS.ry     (S.stringValue defaultDim)
+getSvg :: Shape -> S.Svg
+getSvg s = do
+    case s of
+      Circle  -> S.circle  ! AS.r     (S.stringValue defaultDim)
+      Square  -> S.rect    ! AS.width (S.stringValue defaultDim) ! AS.height (S.stringValue defaultDim)
+      Rect    -> S.rect    ! AS.width (S.stringValue defaultDim) ! AS.height (S.stringValue defaultDim)
+      Ellipse -> S.ellipse ! AS.rx    (S.stringValue defaultDim) ! AS.ry     (S.stringValue defaultDim)
 
 renderFill,renderStroke,renderSWidth,renderOpacity :: VisualHandler -> S.Attribute
 renderFill    visuals = AS.fill         $ S.stringValue $ show $ getFill visuals

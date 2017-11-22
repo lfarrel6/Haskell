@@ -58,6 +58,7 @@ strokeWidth :: Double -> VisTransform
 strokeWidth = StrokeWidth
 fillOpacity :: Double -> VisTransform
 fillOpacity = Opacity
+(<!>) :: VisTransform -> VisTransform -> VisTransform
 t0 <!> t1   = ComposeVis t0 t1
 
 visTransform :: VisTransform -> VisualHandler -> VisualHandler
