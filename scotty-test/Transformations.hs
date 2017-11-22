@@ -61,13 +61,10 @@ fillOpacity = Opacity
 t0 <!> t1   = ComposeVis t0 t1
 
 visTransform :: VisTransform -> VisualHandler -> VisualHandler
-visTransform (Fill c)           visHandler = setFill        visHandler c --AS.fill        $ S.stringValue $ show c
-visTransform (StrokeWidth d)    visHandler = setStrokeWidth visHandler d --AS.strokeWidth $ S.stringValue $ show d
-visTransform (Stroke c)         visHandler = setStroke      visHandler c --AS.stroke      $ S.stringValue $ show c
-visTransform (Opacity a)        visHandler = setOpacity     visHandler a --AS.fillOpacity $ S.stringValue $ show a
+visTransform (Fill c)           visHandler = setFill        visHandler c
+visTransform (StrokeWidth d)    visHandler = setStrokeWidth visHandler d
+visTransform (Stroke c)         visHandler = setStroke      visHandler c
+visTransform (Opacity a)        visHandler = setOpacity     visHandler a
 visTransform (ComposeVis t0 t1) visHandler = visTransform t1 newVh
  where
   newVh = visTransform t0 visHandler
-
-
-
