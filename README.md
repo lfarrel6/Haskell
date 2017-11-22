@@ -14,31 +14,31 @@ Each **Renderable** is a tuple of three items
 
 ### Supported Transforms
 
-Transform | Usage | Supported
----------|--------|-----------
-Identity | `Identity` | Y
-Translate | `Translate 5 5` | Y
-Scale | `Scale 5 5` | Y
-Rotate | `Rotate 30` | Y
-Compose | `Compose (Rotate 30) (Scale 5 5)` | Y
+Transform | Usage via Webservice | Local Usage | Supported
+---------|--------|---------|------------
+Identity | `Identity` | `identity` | Y
+Translate | `Translate 5 5` | `translate 5 5` | Y
+Scale | `Scale 5 5` | `scale 5 5` | Y
+Rotate | `Rotate 30` | `rotate 30` | Y
+Compose | `Compose (Rotate 30) (Scale 5 5)` | `Rotate 30 <+> Scale 5 5` | Y
 
 ### Supported VisTransforms
 
-VisTransform | Usage | Supported
--------------|-------|-----------
-Fill | `Fill Red` | Y
-StrokeWidth | `StrokeWidth 7.5` | Y
-Stroke | `Stroke Blue` | Y
-Opacity | `Opacity 0.5` | Y
-ComposeVis | `ComposeVis (Fill Red) (Opacity 0.25)` | Y
+VisTransform | Usage via Webservice | Local Usage | Supported
+-------------|-------|---------|-------------
+Fill | `Fill Red` | `fill red` | Y
+StrokeWidth | `StrokeWidth 7.5` | `strokeWidth 7.5` | Y
+Stroke | `Stroke Blue` | `stroke blue` | Y
+Opacity | `Opacity 0.5` | `opacity 0.5` | Y
+ComposeVis | `ComposeVis (Fill Red) (Opacity 0.25)` | `fill red <!> opacity 0.25` | Y
 
 ### Supported Shapes
 
-Shape | Usage | Supported
-------|-----|-----
-Circle | `Circle` | Y
-Square | `Square` | Y
-Rectangle | `Rect` | Y
+Shape | Usage via Webservice | Local Usage | Supported
+------|--------|------|-----
+Circle | `Circle` | `circle` | Y
+Square | `Square` | `square` | Y
+Rectangle | `Rect` | `rect` | Y
 
 ### Supported Colours
 * White
