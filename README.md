@@ -34,11 +34,11 @@ ComposeVis | `ComposeVis (Fill Red) (Opacity 0.25)` | N
 
 ### Supported Shapes
 
-Shape | Supported
-------|----------
-Circle | Y
-Square | Y
-Rect | Y
+Shape | Usage | Supported
+------|-----|-----
+Circle | `Circle` | Y
+Square | `Square` | Y
+Rectangle | `Rect` | Y
 
 ### Supported Colours
 * White
@@ -54,7 +54,7 @@ Rect | Y
 
 * Input is provided through the text box on the first page.
 * Input is converted from Text to a String, and interpreted into `Just` a description of a Drawing or `Nothing`.
-	* This is interpretation is done using the readMaybe function from Text.
-* Assuming the description is valid and the interpreter function returns `Just` a Drawing, the Drawing is passed to the SvgBuilder.
-* The SvgBuilder declares a generic Svg header, and the maps the `renderShape` function across each `Renderable` in the `Drawing`.
+	* This is interpretation is done using the `readMaybe` function from Text.
+* Assuming the description is valid and the interpreter function returns `Just` a `Drawing`, the `Drawing` is passed to the `SvgBuilder`.
+* The `SvgBuilder` declares a generic Svg header, and the maps the `renderShape` function across each `Renderable` in the `Drawing`.
 * `renderShape` simply pattern matches out the `Transform`, `VisTransform`, and `Shape` used to describe the Svg.
