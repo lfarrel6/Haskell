@@ -1,4 +1,4 @@
-# Shape Server in Haskell :octocat:
+# :sparkles: Shape Server in Haskell :sparkles:
 
 ### SVG rendering server for CS4012
 
@@ -53,8 +53,32 @@ Rectangle | `Rect` | Y
 # Flow
 
 * Input is provided through the text box on the first page.
-* Input is converted from Text to a String, and interpreted into `Just` a description of a Drawing or `Nothing`.
+* Input is converted from Text to a String, and interpreted into a `Just Drawing` or `Nothing`.
 	* This is interpretation is done using the `readMaybe` function from Text.
-* Assuming the description is valid and the interpreter function returns `Just` a `Drawing`, the `Drawing` is passed to the `SvgBuilder`.
+* Assuming the description is valid and the interpreter function returns `Just Drawing`, the `Drawing` is passed to the `SvgBuilder`.
 * The `SvgBuilder` declares a generic Svg header, and the maps the `renderShape` function across each `Renderable` in the `Drawing`.
 * `renderShape` simply pattern matches out the `Transform`, `VisTransform`, and `Shape` used to describe the Svg.
+
+# DSL Design
+
+My goal in designing the DSL was to ensure that its functionality was met with simplicity. To achieve this simplicity, I went for a modular structure:
+
+* **The Main Module** simply uses Scotty to serve a simple html form, when the form is executed the contents of the input field is interpreted into a `Maybe Drawing` description. If the Drawing is valid, an Svg is built, if it is invalid, an error message is displayed.
+
+* **The Shapes Module** consists of simple shape definitions, as well as the type declarations of Renderable and Drawing.
+
+* **The Colors Module** just provides constructors for Colors. *Probably unnecessary ones at that.*
+
+* **The Transformations Module** consists of the two types of transform, and the simple functions needed to actually execute them.
+
+* **The VisualHandler Module** is used to handle the possible visual transforms and make them available to the render functions. I built this module due to difficulties encountered in composing the VisTransforms as the Blaze Svg style combinators returned Attributes as opposed to AttributeValues.
+
+* **The SvgHandler Module** builds the Svgs described by the received Drawings. To allow for combined Visual Transforms on the Svgs that it renders, the SvgHandler's render function applies the Visual Transformations to a default VisualHandler and uses the values that remain in its rendering.
+
+## Design Tradeoffs
+
+My initial plan for the DSL was to have my Main module, along with Shapes, Colors, Transformations, and an SvgHandler, however I had to implement the VisualHandler to facilitate the composition of visual transformations.
+
+Transformations such as `translate` or `scale`, as provided by Blaze Svg, take their parameters and return an AttributeValue, which is then wrapped into the `transform` Attribute. This makes it easy to compose these transforms, as the AttributeValues can be combined into a single attribute.
+
+Visual Transforms however are represented by individual Attributes, so this form of composition is not possible. This was the motivation behind creating a module which would provide a type to absorb these transformations onto a default set of attributes, and render the result.
