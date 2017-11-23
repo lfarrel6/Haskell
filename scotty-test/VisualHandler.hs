@@ -4,15 +4,20 @@ module VisualHandler(VisualHandler, getDefaultVH, setFill, setStroke,
 
 import Colors
 
+--declared for readability purposes
 type Fill = Color
 type Stroke = Color
 type StrokeWidth = Double
 type Opacity = Double
 
+--visualHandler creates a tuple of the attribute values following visual transforms
 type VisualHandler = (Fill,Stroke,StrokeWidth,Opacity)
 
+--get the default tuple
 getDefaultVH :: VisualHandler
 getDefaultVH = (black,black,1,1)
+
+-- << Getters and Setters
 
 setFill, setStroke :: VisualHandler -> Color -> VisualHandler
 setFill   (_,s,sw,o) newFill   = (newFill,s,sw,o)
@@ -29,3 +34,5 @@ getStroke (_,s,_,_) = s
 getStrokeWidth, getOpacity :: VisualHandler -> Double
 getStrokeWidth (_,_,sw,_) = sw
 getOpacity     (_,_,_,o)  = o
+
+-- >>

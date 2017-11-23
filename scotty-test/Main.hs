@@ -13,6 +13,10 @@ import Data.Text.Lazy
 import qualified Shapes as SH
 import SvgHandler
 
+--serve input file
+--read input received from form submission
+--evaluate if valid
+
 main :: IO ()
 main = scotty 1234 $ do
   get "/" $ file "input.html"
