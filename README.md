@@ -20,7 +20,7 @@ Identity | `Identity` | `identity` | Y
 Translate | `Translate 5 5` | `translate 5 5` | Y
 Scale | `Scale 5 5` | `scale 5 5` | Y
 Rotate | `Rotate 30` | `rotate 30` | Y
-Compose | `Compose (Rotate 30) (Scale 5 5)` | `Rotate 30 <+> Scale 5 5` | Y
+Compose | `Compose (Rotate 30) (Scale 5 5)` | `rotate 30 <+> scale 5 5` | Y
 
 ### Supported VisTransforms
 
