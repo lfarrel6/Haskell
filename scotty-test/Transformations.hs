@@ -48,8 +48,8 @@ transform' (Compose t0 t1)    = transform' t0 ++ transform' t1
 -- >>
 
 data VisTransform = Fill Color
-                    | StrokeWidth Double
                     | Stroke Color
+                    | Strokewidth Double
                     | Opacity Double
                     | ComposeVis VisTransform VisTransform 
                     deriving Read
@@ -58,7 +58,7 @@ fill, stroke :: Color -> VisTransform
 fill        = Fill
 stroke      = Stroke
 strokeWidth :: Double -> VisTransform
-strokeWidth = StrokeWidth
+strokeWidth = Strokewidth
 fillOpacity :: Double -> VisTransform
 fillOpacity = Opacity
 (<!>) :: VisTransform -> VisTransform -> VisTransform
@@ -67,7 +67,7 @@ t0 <!> t1   = ComposeVis t0 t1
 --visTransform applies VisTransforms to the VisualHandler and returns the updated VisualHandler
 visTransform :: VisTransform -> VisualHandler -> VisualHandler
 visTransform (Fill c)           visHandler = setFill        visHandler c
-visTransform (StrokeWidth d)    visHandler = setStrokeWidth visHandler d
+visTransform (Strokewidth d)    visHandler = setStrokeWidth visHandler d
 visTransform (Stroke c)         visHandler = setStroke      visHandler c
 visTransform (Opacity a)        visHandler = setOpacity     visHandler a
 --Compose evaluates t0 on visHandler and gives the result to t1 to ensure

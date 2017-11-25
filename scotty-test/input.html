@@ -2,11 +2,71 @@
 <html>
 <head>
 	<title>Enter your Shape description</title>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+	<style>
+	#overlay {
+    	position: fixed;
+    	display: none;
+    	width: 100%;
+    	height: 100%;
+    	top: 0;
+    	left: 0;
+    	right: 0;
+    	bottom: 0;
+    	background-color: rgba(0,0,0,0.5);
+    	z-index: 2;
+    	cursor: pointer;
+	}
+
+	#text{
+		position: absolute;
+		text-align: center;
+    	top: 50%;
+    	left: 50%;
+    	transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+	}
+
+	#main-text{
+		font-size: 35px;
+   	    color: white;
+	}
+
+	a{
+		color: #3256DF;
+	}
+
+	</style>
+
 </head>
 <body>
-	<form action="/render" method="post">
-  		Shape: <input type="text" name="shapeDesc"><br>
+	<div class="w3-container w3-blue">
+  		<h2>Describe a Shape to render</h2>
+  		<button class="w3-button w3-blue" onclick="showOverlay()">>View Cheat Sheet<</button>
+	</div>
+	<div id="overlay" onclick="hideOverlay()">
+		<div id="text">
+			<h3 id="main-text">Single SVG Drawings are described<br>(Transform,VisTransform,Shape)<hr>Multi SVG Drawings are described<br>[(Shape0),(Shape1),(Shape2),...]</h3>
+			<hr>
+			<p><a href="https://github.com/lfarrel6/shapeserverhs/blob/master/README.md#supported-transforms" target="_blank">More Information...</a></p>
+		</div>
+	</div>
+
+	<form class="w3-container" action="/render" method="post">
+  		<label>Shape Description</label>
+  		<textarea class="w3-input" type="text" name="shapeDesc"></textarea>
   		<input type="submit" value="Submit">
 	</form> 
+
+	<script>
+	function showOverlay(){
+		document.getElementById("overlay").style.display = "block";
+	}
+	function hideOverlay(){
+		document.getElementById("overlay").style.display = "none";
+	}
+	</script>
+
 </body>
 </html>

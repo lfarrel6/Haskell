@@ -1,5 +1,5 @@
-module VisualHandler(VisualHandler, getDefaultVH, setFill, setStroke,
-                     setStrokeWidth, setOpacity, getFill,
+module VisualHandler(VisualHandler, getDefaultVH, setFill,
+                     setStroke, setStrokeWidth, setOpacity, getFill,
                      getStroke, getStrokeWidth, getOpacity) where
 
 import Colors
@@ -7,11 +7,11 @@ import Colors
 --declared for readability purposes
 type Fill = Color
 type Stroke = Color
-type StrokeWidth = Double
+type Strokewidth = Double
 type Opacity = Double
 
 --visualHandler creates a tuple of the attribute values following visual transforms
-type VisualHandler = (Fill,Stroke,StrokeWidth,Opacity)
+type VisualHandler = (Fill,Stroke, Strokewidth, Opacity)--, Stroke
 
 --get the default tuple
 getDefaultVH :: VisualHandler
