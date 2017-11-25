@@ -38,8 +38,6 @@ Shape | Usage via Webservice | Local Usage | Supported
 ------|--------|------|-----
 Circle | `Circle` | `circle` | Y
 Square | `Square` | `square` | Y
-Rectangle | `Rect` | `rect` | Y
-Ellipse | `Ellipse` | `ellipse` | Y
 
 ### Supported Colours
 * White
