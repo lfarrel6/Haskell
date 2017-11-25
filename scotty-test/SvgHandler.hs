@@ -33,7 +33,7 @@ getSvg s = do
 
 --render functions take values from the visual handler and wrap them into attributes
 renderFill,renderStroke,renderSWidth,renderOpacity :: VisualHandler -> S.Attribute
-renderFill    visuals = AS.fill         $ S.stringValue $ show $ getFill visuals
-renderStroke  visuals = AS.stroke       $ S.stringValue $ show $ getStroke visuals
-renderSWidth  visuals = AS.strokeWidth  $ S.stringValue $ show $ getStrokeWidth visuals
-renderOpacity visuals = AS.fillOpacity  $ S.stringValue $ show $ getOpacity visuals
+renderFill     = AS.fill         . S.stringValue . show . getFill 
+renderStroke   = AS.stroke       . S.stringValue . show . getStroke
+renderSWidth   = AS.strokeWidth  . S.stringValue . show . getStrokeWidth
+renderOpacity  = AS.fillOpacity  . S.stringValue . show . getOpacity

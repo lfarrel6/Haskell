@@ -31,7 +31,7 @@ main = scotty 1234 $ do
             Nothing -> H.h1 "Invalid Shape description"
 
 interpretDrawing :: Text -> Maybe SH.Drawing
-interpretDrawing s = readMaybe $ unpack s
+interpretDrawing = readMaybe . unpack
 
 interpretRenderable :: Text -> Maybe SH.Renderable
-interpretRenderable s = readMaybe $ unpack s
+interpretRenderable = readMaybe . unpack
