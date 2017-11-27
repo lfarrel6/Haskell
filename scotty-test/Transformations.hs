@@ -57,8 +57,8 @@ data VisTransform = Fill Color
 fill, stroke :: Color -> VisTransform
 fill        = Fill
 stroke      = Stroke
-strokeWidth :: Double -> VisTransform
-strokeWidth = Strokewidth
+strokewidth :: Double -> VisTransform
+strokewidth = Strokewidth
 fillOpacity :: Double -> VisTransform
 fillOpacity = Opacity
 (<!>) :: VisTransform -> VisTransform -> VisTransform
