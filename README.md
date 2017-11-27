@@ -75,4 +75,6 @@ Visual Transforms however are represented by individual Attributes, so this form
 
 ##### Shapes
 
-The Shapes module consists of the data type declarations, as well as simple constructor functions. This is far less than was provided in the original Shapes file provided. The motivation behind this is that a lot of the code provided in the original Shapes file is not needed when rendering Svgs of these shapes. By deriving read, the only input needed to create the Svgs of the shapes supported by the Blaze.Svg library is the Constructor. Any changes to the dimensions or coordinates of the render beyond this can be achieved through the Transformations, so the interpretation functions (e.g. insides) are redundant.
+The Shapes module consists of the data type declarations, as well as simple constructor functions. This is far less than was provided in the original Shapes file provided.
+
+The motivation behind this is that a lot of the code provided in the original Shapes file is not needed when rendering Svgs of these shapes. By deriving read, the only input needed to create the Svgs of the shapes supported by the Blaze.Svg library is the Constructor. Any changes to the dimensions or coordinates of the render beyond this can be achieved through the Transformations, so the interpretation functions (e.g. inside) are redundant.
