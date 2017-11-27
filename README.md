@@ -27,7 +27,7 @@ Compose | `Compose (Rotate 30) (Scale 5 5)` | `rotate 30 <+> scale 5 5` | Y
 VisTransform | Usage via Webservice | Local Usage | Supported
 -------------|-------|---------|-------------
 Fill | `Fill Red` | `fill red` | Y
-StrokeWidth | `StrokeWidth 7.5` | `strokeWidth 7.5` | Y
+Strokewidth | `Strokewidth 7.5` | `strokewidth 7.5` | Y
 Stroke | `Stroke Blue` | `stroke blue` | Y
 Opacity | `Opacity 0.5` | `opacity 0.5` | Y
 ComposeVis | `ComposeVis (Fill Red) (Opacity 0.25)` | `fill red <!> opacity 0.25` | Y
@@ -49,18 +49,7 @@ Square | `Square` | `square` | Y
 * Firebrick
 * Goldenrod
 
-# Flow
-
-* Input is provided through the text box on the first page.
-* Input is converted from Text to a String, and interpreted into a `Just Drawing` or `Nothing`.
-	* This is interpretation is done using the `readMaybe` function from Text.
-* Assuming the description is valid and the interpreter function returns `Just Drawing`, the `Drawing` is passed to the `SvgBuilder`.
-* The `SvgBuilder` declares a generic Svg header, and the maps the `renderShape` function across each `Renderable` in the `Drawing`.
-* `renderShape` simply pattern matches out the `Transform`, `VisTransform`, and `Shape` used to describe the Svg.
-
 # DSL Design
-
-My goal in designing the DSL was to ensure that its functionality was met with simplicity. To achieve this simplicity, I went for a modular structure:
 
 * **The Main Module** simply uses Scotty to serve a simple html form, when the form is executed the contents of the input field is interpreted into a `Maybe Drawing` description. If the Drawing is valid, an Svg is built, if it is invalid, an error message is displayed.
 
@@ -76,8 +65,14 @@ My goal in designing the DSL was to ensure that its functionality was met with s
 
 ## Design Tradeoffs
 
+##### Visual Handler
+
 My initial plan for the DSL was to have my Main module, along with Shapes, Colors, Transformations, and an SvgHandler, however I had to implement the VisualHandler to facilitate the composition of visual transformations.
 
 Transformations such as `translate` or `scale`, as provided by Blaze Svg, take their parameters and return an AttributeValue, which is then wrapped into the `transform` Attribute. This makes it easy to compose these transforms, as the AttributeValues can be combined into a single attribute.
 
 Visual Transforms however are represented by individual Attributes, so this form of composition is not possible. This was the motivation behind creating a module which would provide a type to absorb these transformations onto a default set of attributes, and render the result.
+
+##### Shapes
+
+The Shapes module consists of the data type declarations, as well as simple constructor functions. This is far less than was provided in the original Shapes file provided. The motivation behind this is that a lot of the code provided in the original Shapes file is not needed when rendering Svgs of these shapes. By deriving read, the only input needed to create the Svgs of the shapes supported by the Blaze.Svg library is the Constructor. Any changes to the dimensions or coordinates of the render beyond this can be achieved through the Transformations, so the interpretation functions (e.g. insides) are redundant.
