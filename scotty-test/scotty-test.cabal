@@ -1,7 +1,19 @@
-name:          scotty-test
-version:       0.0.0
-cabal-version: >= 1.8
-build-type:    Simple
+name:                scotty-test
+version:             0.0.0
+synopsis:            Webservice for Shape DSL to SVG
+description:         Simple webservice rendering SVGs for shape dsl
+homepage:            https://github.com/lfarrel6/shapeserverhs#readme
+license:             BSD3
+license-file:        LICENSE
+author:              Liam Farrelly
+maintainer:          lfarrel6@tcd.ie
+copyright:           2017 Liam Farrelly
+category:            Web
+build-type:          Simple
+cabal-version:       >= 1.8
+extra-source-files:  README.md
+                   , input.html
+                   , stack.yaml
 
 executable          scotty-test
     hs-source-dirs: .
